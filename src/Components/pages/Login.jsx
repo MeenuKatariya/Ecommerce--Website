@@ -11,7 +11,10 @@ export const Login=()=>{
     const navigate=useNavigate()
    const dispatch=useDispatch()
 
-   
+    const [loginData,setLoginData]=React.useState({
+        email:"",
+        password:""
+    })
 
     const handleChange=(el)=>{
 const {name,value}=el.target;

@@ -6,18 +6,22 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function ShowData({title,color,description,price,category,hex,imageBase}) {
+export default function ShowData({title,color,description,price ,imageBase}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image={`${imageBase}`}
         alt="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {title}
+          {title} 
+        </Typography>
+        <Typography gutterBottom variant="h5" component="div">
+          {color} 
+
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Lizards are a widespread group of squamate reptiles, with over 6,000

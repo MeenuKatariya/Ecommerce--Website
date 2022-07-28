@@ -43,3 +43,28 @@ a{
 
 
 }
+.cardProduct{
+  /* border: 1px solid red; */
+  height:700px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+}
+.cardProduct>img{
+  
+  height:30%;
+}
+.main{
+  /* border: 1px solid black; */
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:20px;
+  padding:20px;
+  /* height:70px; */
+
+}
+.sortingDiv{
+  border: 1px solid red;
+  width:200px;
+  display: flex;
+  justify-content: space-around;
+}
