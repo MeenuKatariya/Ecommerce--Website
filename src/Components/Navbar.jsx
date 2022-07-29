@@ -130,7 +130,7 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Ecommerce
           </Typography>
           {/* <Link to="/">
           <Button color="inherit" className='home' >Home</Button>

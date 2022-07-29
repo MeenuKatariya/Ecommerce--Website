@@ -37,7 +37,8 @@ export const reducer=(state=init,{type,payload} )=> {
         case ADD_TO_CART:{
             return{
                 ...state,
-                error:true
+                loading:false,
+                error:false,
                 
                 
             }
@@ -46,7 +47,8 @@ export const reducer=(state=init,{type,payload} )=> {
         case INC_CART:{
             return{
                 ...state,
-                error:true
+                loading:false,
+                error:false,
                 
                 
             }
@@ -55,7 +57,8 @@ export const reducer=(state=init,{type,payload} )=> {
         case DEC_CART:{
             return{
                 ...state,
-                error:true
+                loading:false,
+                error:false,
                 
                 
             }
@@ -64,20 +67,16 @@ export const reducer=(state=init,{type,payload} )=> {
         case DELETE_ITEM_FROM_CART:{
             return{
                 ...state,
-                error:true
+                loading:false,
+                error:false,
                 
                 
             }
         }
 
         case CLEAR_CART:{
-            return{
-                ...state,
-                error:true
-                
-                
-            }
-        }
+            return init
+         }
         default:
             return state
     }

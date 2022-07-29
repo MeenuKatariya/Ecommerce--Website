@@ -2,20 +2,34 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import { Link } from '@mui/material';
 import { Button } from "@mui/material"
-
-
-
+import {Box} from "@mui/material"
+import {useSelector} from "react-redux"
+import { ContactSupportOutlined } from '@mui/icons-material';
+import {useDispatch} from "react-redux"
+import { addInCart, addtoCart, errorCart, loadingCart } from '../../Reudx/Cart/action';
+import axios from 'axios';
+import { addScaleCorrector } from 'framer-motion';
 
 
 
 export  const IndividualItem=()=> {
-   const {id} =useParams()
-    const [data,setData]=React.useState([])
+   const {productId} =useParams()
+    const [data,setData]=React.useState({})
+   const cart=useSelector(state=>state.cart.cart)
+   const dispatch=useDispatch
+
+   const isItemInCart=()=>{
+   const el=cart.find(el=>el.id==productId)
+  //  console.log(el);
+    return !!el
+   }
+
+
 
     const fetchData = async() => {
         try {
           let result = await fetch(
-            `http://localhost:8000/products/${id}`
+            `http://localhost:8000/products/${productId}`
           );
           let data = await result.json();
           setData(data);
@@ -30,7 +44,13 @@ export  const IndividualItem=()=> {
       };
 
 
-   console.log(data)
+      
+
+    const handleAddToCart=()=>{
+      dispatch(addInCart(data))
+    }
+
+  
     React.useEffect(()=>{
        fetchData()
     },[])
@@ -45,7 +65,19 @@ export  const IndividualItem=()=> {
          <p>Description :{data.description}</p>
          <p>Rating :{data.rating}</p>
          <p>hex :{data.hex}</p>
-
+        
+        { 
+           !isItemInCart() &&
+            <Button onClick={handleAddToCart}   size="small">Add To Cart</Button>}
+         <Box>
+         {
+          isItemInCart()   && <>  
+         <Button color="success" variant="contained" size="small">+</Button>
+         <Button color="success" variant="contained" size="small">+</Button>
+         <Button color="success" variant="contained" size="small">-</Button>
+         </>
+         }
+         </Box>
        </div>
         
 
