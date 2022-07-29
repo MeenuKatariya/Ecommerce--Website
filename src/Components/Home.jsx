@@ -4,7 +4,8 @@ import ShowData from "./ShowData";
 import { Button } from "@mui/material";
 import { useFetchProducts } from "../Hook/fetchProducts";
 import { filter } from "@chakra-ui/react";
-
+import {useParams}  from "react-router-dom"
+import {Link} from "react-router-dom"
 export const Home = () => {
   const [products, setProducts] = React.useState([]);
   const token = useSelector((state) => state.auth.toggle);
@@ -14,8 +15,7 @@ export const Home = () => {
   const [error, setError] = React.useState(false);
   const [ratingFilter,setRatingFilter]=React.useState()
     // const {loading,error,products}  = useFetchProducts(`http://localhost:8000/products`)
-  // console.log(dataShow)
-// 
+  // console.log(dataSh
   
   const fetchData = async () => {
     try {
@@ -122,27 +122,27 @@ export const Home = () => {
 
       <div className="filterRatingDiv">
         <Button
-          onClick={() =>handleFilter("5 to 4")}
+          onClick={() =>handleFilter(4)}
           variant="outlined"
         >
           5 to 4
         </Button>
         <Button
-          onClick={() =>handleFilter("4 to 3")}
+          onClick={() =>handleFilter(3)}
              variant="contained"
         >
           4 to 3
         </Button>
 
         <Button
-          onClick={() =>handleFilter("3 to 2")}
+          onClick={() =>handleFilter(2)}
              variant="contained"
         >
           3 to 2
         </Button>
 
         <Button
-          onClick={() =>handleFilter("2 to 1")}
+          onClick={() =>handleFilter(1)}
              variant="contained"
         >
           2 to 1
@@ -153,7 +153,7 @@ export const Home = () => {
       <div className="main">
         {
           //
-          products?.map((el) => {
+          products?.map((el,id) => {
           //  return <ShowData  title={el.title}  description={el.description}  price={el.price}  color={el.color}  imageBase={el.imageBase}  key={el.id} />
           
             
@@ -166,8 +166,11 @@ export const Home = () => {
                 <p>Price :{el.price}</p>
                 <p>Description :{el.description}</p>
                 <p>Rating :{el.rating}</p>
-                <p>Category :{el.category}</p>
+                {/* <p>Category :{el.category}</p> */}
                 <p>hex :{el.hex}</p>
+                <Link to={`/product/${id}`}>
+              <Button >ITEM</Button>
+               </Link>
               </div>
             );
           })
@@ -188,6 +191,8 @@ export const Home = () => {
           Next
 
         </Button>
+
+       
       </div>
     </div>
   );

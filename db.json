@@ -1100,5 +1100,11 @@
           "hex": "#0bf227",
           "imageBase": "https://via.placeholder.com/500"
       }
-  ]
+  ],
+  "user":{
+    "name":"Meenu",
+    "age":20,
+    "address":"mohan nagar",
+    "cartItems":[]
+  }
 }
