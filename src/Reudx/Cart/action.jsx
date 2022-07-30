@@ -5,27 +5,31 @@ import { DEC_CART } from "./actionType";
 import { DELETE_ITEM_FROM_CART } from "./actionType";
 
 
-export const addtoCart=()=>{
+export const addtoCart=(payload)=>{
     return{
-        type:ADD_TO_CART
+        type:ADD_TO_CART,
+        payload
     }
 }
 
-export const incrementCart=()=>{
+export const incrementCart=(payload)=>{
     return{
-        type:INC_CART
+        type:INC_CART,
+        payload
     }
 }
 
-export const decrementCart=()=>{
+export const decrementCart=(payload)=>{
     return{
-        type:DEC_CART
+        type:DEC_CART,
+        payload
     }
 }
 
-export const deleteItemFromCartCart=()=>{
+export const deleteItemFromCartCart=(payload)=>{
     return{
-        type:DELETE_ITEM_FROM_CART
+        type:DELETE_ITEM_FROM_CART,
+        payload
     }
 }
 
@@ -47,44 +51,24 @@ export const getCart=(payload)=>{
         payload
     }
 }
-export const clearCart=()=>{
-    return{
-        type:CLEAR_CART
-    }
-}
 
 
-  export const getUserCart=()=>(dispatch)=>{
+
+//   export const getUserCart=()=>(dispatch)=>{
     
-   dispatch(loadingCart())
-     axios({
-        method:"get",
-        url:"http://localhost:8000/user",
+//    dispatch(loadingCart())
+//      axios({
+//         method:"get",
+//         url:"http://localhost:8000/user",
 
-     }).then(res=>{
-        dispatch(getCart(res.data.cartItems))
-     }).
-    catch(err=>{
-        // console.log(error)
-        dispatch(errorCart())
-    })
+//      }).then(res=>{
+//         dispatch(getCart(res.data.cartItems))
+//      }).
+//     catch(err=>{
+//         // console.log(error)
+//         dispatch(errorCart())
+//     })
     
-  }
+//   }
 
- export const addInCart=(data)=>(dispatch,state)=>{
-    const cart=state()?.cart?.cart;
-    dispatch(loadingCart())
-    axios({
-      metohd:"patch",
-      url:"http://localhost:8000/user",
-      data:{
-        cartItems:[...cart,{...data,count:1}]
-      }
-    }).then(res=>{dispatch(addtoCart())
-     
-        dispatch(getUserCart())
-         
-    }).catch(err=>{
-      dispatch(errorCart())
-    })
-  }
+ 

@@ -152,27 +152,27 @@ export const Home = () => {
 
       <div className="main">
         {
-          //
+          
           products?.map((el,id) => {
-          //  return <ShowData  title={el.title}  description={el.description}  price={el.price}  color={el.color}  imageBase={el.imageBase}  key={el.id} />
+           return <ShowData  title={el.title}  description={el.description}  price={el.price}  color={el.color}  imageBase={el.imageBase}  id={el.id} />
           
             
-            return (
+            // return (
             
-              <div className="cardProduct">
-                <img src={el.imageBase} alt="" />
-                <p>Title :{el.title}</p>
-                <p>Colour :{el.color}</p>
-                <p>Price :{el.price}</p>
-                <p>Description :{el.description}</p>
-                <p>Rating :{el.rating}</p>
-                {/* <p>Category :{el.category}</p> */}
-                <p>hex :{el.hex}</p>
-                <Link to={`/product/${id}`}>
-              <Button >ITEM</Button>
-               </Link>
-              </div>
-            );
+            //   <div className="cardProduct">
+            //     <img src={el.imageBase} alt="" />
+            //     <p>Title :{el.title}</p>
+            //     <p>Colour :{el.color}</p>
+            //     <p>Price :{el.price}</p>
+            //     <p>Description :{el.description}</p>
+            //     <p>Rating :{el.rating}</p>
+              
+            //     <p>hex :{el.hex}</p>
+            //     <Link to={`/product/${el.id}`}>
+            //   <Button>ITEM</Button>
+            //    </Link>
+            //   </div>
+            // );
           })
         }
       </div>

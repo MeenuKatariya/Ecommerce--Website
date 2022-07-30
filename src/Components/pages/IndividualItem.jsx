@@ -1,95 +1,126 @@
-import React from 'react'
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Link } from '@mui/material';
-import { Button } from "@mui/material"
-import {Box} from "@mui/material"
-import {useSelector} from "react-redux"
-import { ContactSupportOutlined } from '@mui/icons-material';
-import {useDispatch} from "react-redux"
-import { addInCart, addtoCart, errorCart, loadingCart } from '../../Reudx/Cart/action';
-import axios from 'axios';
-import { addScaleCorrector } from 'framer-motion';
+import { Button } from "@mui/material";
 
+export const IndividualItem = () => {
+  let {productId} = useParams();
+  const [singleItem, setSingleItem] = React.useState();
+  const [isInCart, setIsInCart] = React.useState(false);
+  const [itemFromCart, setItemFromCart] = React.useState(null);
 
-
-export  const IndividualItem=()=> {
-   const {productId} =useParams()
-    const [data,setData]=React.useState({})
-   const cart=useSelector(state=>state.cart.cart)
-   const dispatch=useDispatch
-
-   const isItemInCart=()=>{
-   const el=cart.find(el=>el.id==productId)
-  //  console.log(el);
-    return !!el
-   }
-
-
-
-    const fetchData = async() => {
-        try {
-          let result = await fetch(
-            `http://localhost:8000/products/${productId}`
-          );
-          let data = await result.json();
-          setData(data);
-          
-          // console.log(result)
-          // console.log(data);
-        } catch (error) {
-        
-          
-          console.log(error);
-        }
-      };
-
-
-      
-
-    const handleAddToCart=()=>{
-      dispatch(addInCart(data))
+  const fetchProduct = async(productId) => {
+    try {
+      let res = await fetch(`http://localhost:8000/products/${productId}`);
+      let item = await res.json();
+      setSingleItem(item);
+    } catch (error) {
+      console.log(error)
     }
+  }
 
-  
-    React.useEffect(()=>{
-       fetchData()
-    },[])
-  return (
-    <div className="main" >
-    {
-       <div className="cardProduct" >
-          <img src={data.imageBase} alt="" />
-         <p>Title :{data.title}</p>
-         <p>Colour :{data.color}</p>
-         <p>Price :{data.price}</p>
-         <p>Description :{data.description}</p>
-         <p>Rating :{data.rating}</p>
-         <p>hex :{data.hex}</p>
-        
-        { 
-           !isItemInCart() &&
-            <Button onClick={handleAddToCart}   size="small">Add To Cart</Button>}
-         <Box>
-         {
-          isItemInCart()   && <>  
-         <Button color="success" variant="contained" size="small">+</Button>
-         <Button color="success" variant="contained" size="small">+</Button>
-         <Button color="success" variant="contained" size="small">-</Button>
-         </>
-         }
-         </Box>
-       </div>
-        
-
-        
-          
-        
-    
+  const checkInCart = async (productId) => {
+    try {
+      let res = await fetch(`http://localhost:8000/cartItems/${productId}`);
+      let item = await res.json();
+      // console.log(item);
+      if(item.id){
+        setIsInCart(true);
+        setItemFromCart(item);
+      }
+      else{
+        setIsInCart(false);
+        setItemFromCart(null);
+      }
+    } catch (error) {
+      console.log(error)
     }
-    </div>
-  )
+  }
+
+const handleAddToCart = async (item) => {
+  try {
+    let body = item;
+    body.quantity = 1;
+    // console.log(body);
+    await fetch(`http://localhost:8000/cartItems`, {
+      method: 'POST',
+      headers : { 'Content-Type' : 'application/json' },
+      body : JSON.stringify(body)
+    });
+    setIsInCart(true);
+    setItemFromCart(body);
+  } catch (error) {
+    console.log(error)
+  }
 }
 
+const handleDEC = async() => {
+  try {
+    let item = itemFromCart;
+    item.quantity = (item.quantity-1);
+    if(item.quantity == 0){
+      await fetch(`http://localhost:8000/cartItems/${productId}`, {
+        method: 'DELETE',
+        headers : { 'Content-Type' : 'application/json' }
+      });
+      checkInCart(productId);
+    }
+    else{
+      // setItemFromCart(item);
+      await fetch(`http://localhost:8000/cartItems/${productId}`, {
+        method: 'PUT',
+        headers : { 'Content-Type' : 'application/json' },
+        body: JSON.stringify(item)
+      });
+      checkInCart(productId);
+    }
 
+  } catch (error) {
+    console.log(error)
+  }
+};
+const handleINC = async() => {
+  try {
+    let item = itemFromCart;
+    item.quantity = (item.quantity+1)
+    // setItemFromCart(item);
+    await fetch(`http://localhost:8000/cartItems/${productId}`, {
+        method: 'PUT',
+        headers : { 'Content-Type' : 'application/json' },
+        body: JSON.stringify(item)
+      });
+      checkInCart(productId);
+  } catch (error) {
+    console.log(error)
+  }
+};
 
+  React.useEffect(()=>{
+    // console.log(productId)
+    if(productId){
+      fetchProduct(productId);
+      checkInCart(productId);
+    }
+  },[]);
 
+  return <div className='main'>
+      {
+        singleItem ? <div className='cardProduct'>
+          <img src={singleItem.imageBase} alt="" />
+          <p>Title: {singleItem.title}</p>
+          <p>Price : {singleItem.price}</p>
+          <p>Description :{singleItem.description}</p>
+          <p>Rating :{singleItem.rating}</p>
+          <p>Hex :{singleItem.hex}</p>
+          <Button onClick={()=>{handleAddToCart(singleItem)}} disabled={isInCart}>ADD TO CART</Button>
+          {
+            isInCart ? <div>
+              <Button color="success" variant="contained" size="small"  onClick={handleDEC}  >-</Button>
+              <span> {itemFromCart.quantity} </span>
+              <Button color="success" variant="contained" size="small"  onClick={handleINC}  >+</Button>
+            </div> : null
+          }
+        </div> : null
+      }
+  </div>
+
+}

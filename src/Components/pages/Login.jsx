@@ -28,7 +28,7 @@ setLoginData(prev=>({...prev,[name]:value}))
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(loginData)
         })
-        let response=await res.json 
+        let response=await res.json() 
         return response;
     
     } catch(error)

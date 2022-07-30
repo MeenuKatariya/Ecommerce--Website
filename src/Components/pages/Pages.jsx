@@ -10,6 +10,7 @@ import { getCart, getUser, getUserCart } from '../../Reudx/Cart/action'
 import { useDispatch } from 'react-redux/es/exports'
 import { IndividualItem } from './IndividualItem'
 import { errorCart, loadingCart } from '../../Reudx/Cart/action'
+import {Cart} from "../Cart"
 export const Pages = () => {
   const dispatch=useDispatch()
   const [userData,setUserData] =React.useState([])
@@ -17,9 +18,9 @@ export const Pages = () => {
    
 
 
-  React.useEffect(()=>{
-   dispatch(getUserCart())
-  },[])
+  // React.useEffect(()=>{
+  //  dispatch(getUserCart())
+  // },[])
   return (
     <div>
        <Routes>
@@ -28,6 +29,7 @@ export const Pages = () => {
         <Route path="/grocery"  element={<Grocery/>}/>
         <Route path="/pharmacy"  element={<Pharmacy/>}/>
         <Route path="/product/:productId"  element={<IndividualItem/>}/>
+        <Route path="/cart"  element={<Cart/>}/>
         <Route path="*"  element={<NotFound/>}/>
        </Routes>  
     </div>

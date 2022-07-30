@@ -169,7 +169,7 @@ export const Pharmacy = () => {
                 <p>Rating :{el.rating}</p>
                 {/* <p>Category :{el.category}</p> */}
                 <p>hex :{el.hex}</p>
-                <Link to={`/product/${id}`}>
+                <Link to={`/product/${el.id}`}>
               <Button >ITEM</Button>
                </Link>
               </div>

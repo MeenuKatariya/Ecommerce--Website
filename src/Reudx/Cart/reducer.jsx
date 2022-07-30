@@ -74,9 +74,7 @@ export const reducer=(state=init,{type,payload} )=> {
             }
         }
 
-        case CLEAR_CART:{
-            return init
-         }
+        
         default:
             return state
     }
