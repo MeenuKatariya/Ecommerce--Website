@@ -1103,31 +1103,19 @@
   ],
   "cartItems": [
     {
-      "id": 55,
-      "title": "GLYCERIN",
-      "color": "Fuscia",
-      "price": 813,
-      "description": "eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id",
-      "rating": 4,
-      "category": "pharmacy",
-      "hex": "#2829c3",
+      "id": 2,
+      "title": "Bread - Pumpernickel",
+      "color": "Khaki",
+      "price": 2653,
+      "description": "mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis",
+      "rating": 4.8,
+      "category": "grocery",
+      "hex": "#2b1669",
       "imageBase": "https://via.placeholder.com/500",
-      "quantity": 1
+      "quantity": 7
     },
     {
-      "id": 51,
-      "title": "Methylphenidate Hydrochloride",
-      "color": "Goldenrod",
-      "price": 551,
-      "description": "faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper",
-      "rating": 1.6,
-      "category": "pharmacy",
-      "hex": "#17a51d",
-      "imageBase": "https://via.placeholder.com/500",
-      "quantity": 1
-    },
-    {
-      "id": 56,
+      "id": 3,
       "title": "Chilli Paste, Sambal Oelek",
       "color": "Blue",
       "price": 2133,
@@ -1139,19 +1127,7 @@
       "quantity": 1
     },
     {
-      "id": 57,
-      "title": "Chilli Paste, Sambal Oelek",
-      "color": "Blue",
-      "price": 2133,
-      "description": "nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla",
-      "rating": 2,
-      "category": "grocery",
-      "hex": "#12b8d9",
-      "imageBase": "https://via.placeholder.com/500",
-      "quantity": 1
-    },
-    {
-      "id": 58,
+      "id": 4,
       "title": "Chilli Paste, Sambal Oelek",
       "color": "Blue",
       "price": 2133,
@@ -1172,7 +1148,7 @@
       "category": "grocery",
       "hex": "#177e20",
       "imageBase": "https://via.placeholder.com/500",
-      "quantity": 5
+      "quantity": 2
     }
   ]
 }

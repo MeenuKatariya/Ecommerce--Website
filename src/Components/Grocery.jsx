@@ -10,19 +10,18 @@ export const Grocery = () => {
   const [products, setProducts] = React.useState([]);
   const token = useSelector((state) => state.auth.toggle);
   const [page, setPage] = React.useState(1);
-  
+  const [sort, setSort] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
-  
+  const [ratingFilter,setRatingFilter]=React.useState()
     // const {loading,error,products}  = useFetchProducts(`http://localhost:8000/products`)
-  // console.log(dataShow)
-// 
+  // console.log(dataSh
   
   const fetchData = async () => {
     try {
       setLoading(true);
       let result = await fetch(
-        `http://localhost:8000/products?category_like=grocery&_page=${page}&_limit=6`
+        `http://localhost:8000/products?_page=${page}&_limit=6`
       );
       let data = await result.json();
       setProducts(data);
@@ -96,7 +95,7 @@ export const Grocery = () => {
 
   React.useEffect(() => {
     fetchData()
-  }, [page]);
+  }, [page,sort]);
 
   return loading ? (
     <h2>...loading</h2>
@@ -153,31 +152,31 @@ export const Grocery = () => {
 
       <div className="main">
         {
-          //
+          
           products?.map((el,id) => {
-          //  return <ShowData  title={el.title}  description={el.description}  price={el.price}  color={el.color}  imageBase={el.imageBase}  key={el.id} />
+           return <ShowData  title={el.title}  description={el.description}  price={el.price}  color={el.color}  imageBase={el.imageBase}  id={el.id} />
           
             
-            return (
+            // return (
             
-              <div className="cardProduct">
-                <img src={el.imageBase} alt="" />
-                <p>Title :{el.title}</p>
-                <p>Colour :{el.color}</p>
-                <p>Price :{el.price}</p>
-                <p>Description :{el.description}</p>
-                <p>Rating :{el.rating}</p>
-                {/* <p>Category :{el.category}</p> */}
-                <p>hex :{el.hex}</p>
-                <Link to={`/product/${el.id}`}>
-              <Button >ITEM</Button>
-               </Link>
-              </div>
-            );
+            //   <div className="cardProduct">
+            //     <img src={el.imageBase} alt="" />
+            //     <p>Title :{el.title}</p>
+            //     <p>Colour :{el.color}</p>
+            //     <p>Price :{el.price}</p>
+            //     <p>Description :{el.description}</p>
+            //     <p>Rating :{el.rating}</p>
+              
+            //     <p>hex :{el.hex}</p>
+            //     <Link to={`/product/${el.id}`}>
+            //   <Button>ITEM</Button>
+            //    </Link>
+            //   </div>
+            // );
           })
         }
       </div>
-      <div>
+      <div  className="pagination" >
         <Button
           disabled={page == 1}
           variant="contained"
@@ -192,10 +191,9 @@ export const Grocery = () => {
           Next
 
         </Button>
+
+       
       </div>
     </div>
   );
 };
-
-
-

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 export const Cart = () => {
   const [data, setData] = React.useState([]);
   let {productId} = useParams();
+  let total=0;
 
   const fetchData = async () => {
     try {
@@ -37,19 +38,23 @@ export const Cart = () => {
   return (
     <div className="cartMain">
       {data.map((el) => {
+        total+=el.price*el.quantity
         return (
           <div className="cartIndividual">
+           
+           <div className="imgTitle" >
            <div className="cartImage">
-           <img src={el.imageBase} alt="" />
+           {/* <img src={el.imageBase} alt="" /> */}
            </div>
-
-
-            <p>Title : {el.title}</p>
-            <p>Colour :{el.color}</p>
+          
+          <div className="title">
+          <p>Title : {el.title}</p>
+            {/* <p>Colour :{el.color}</p> */}
             <p>Quantity:{el.quantity}</p>
             <p>Price :{el.price}</p>
-            <p>Description :{el.description}</p>
+            {/* <p>Description :{el.description}</p> */}
             <p>Rating :{el.rating}</p>
+             <p>Amount : {+el.price * el.quantity}</p>
             <Button
               color="success"
               variant="contained"
@@ -59,8 +64,26 @@ export const Cart = () => {
               Delete
             </Button>
           </div>
+          </div>
+           
+         
+
+           
+
+
+          </div>
         );
       })}
+      <div>
+      <Button
+              color="success"
+              variant="contained"
+              size="small"
+              onClick={deleteCartItem}
+            >
+              Total :  {total}
+            </Button>
+      </div>
     </div>
   );
 };

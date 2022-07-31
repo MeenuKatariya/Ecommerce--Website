@@ -176,7 +176,7 @@ export const Home = () => {
           })
         }
       </div>
-      <div>
+      <div  className="pagination" >
         <Button
           disabled={page == 1}
           variant="contained"

@@ -23,17 +23,53 @@
   /* border: 1px solid red; */
   width:200px;
   display: flex;
+  margin-top: 10px;
   justify-content: space-around;
 }
 
 .cartMain{
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .cartIndividual{
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
+  /* display: flex; */
+
 }
 
 a{
   text-decoration: none;
+}
+
+.filterRatingDiv{
+  /* border:1px solid blue; */
+  width:400px;
+  justify-content: space-evenly;
+  display: flex;
+  margin-left: 1100px;
+  margin-top: -30px;
+}
+.pagination{
+  margin-left: 600px;
+
+}
+
+.cartImage{
+  /* border: 1px solid red; */
+  height: 300px;
+
+}
+.cartImage>img{
+  height: 100%;
+}
+.title{
+  /* border: 1px solid red; */
+  width:600px;
+  margin-left: 20px;
+
+
+}
+.imgTitle{
+  /* border: 1px solid purple; */
+  display: flex;
 }
