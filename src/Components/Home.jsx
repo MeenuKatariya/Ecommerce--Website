@@ -1,11 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import ShowData from "./ShowData";
 import { Button } from "@mui/material";
-import { useFetchProducts } from "../Hook/fetchProducts";
-import { filter } from "@chakra-ui/react";
-import {useParams}  from "react-router-dom"
-import {Link} from "react-router-dom"
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 export const Home = () => {
   const [products, setProducts] = React.useState([]);
   const token = useSelector((state) => state.auth.toggle);
@@ -13,10 +12,7 @@ export const Home = () => {
   const [sort, setSort] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
-  const [ratingFilter,setRatingFilter]=React.useState()
-    // const {loading,error,products}  = useFetchProducts(`http://localhost:8000/products`)
-  // console.log(dataSh
-  
+
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -35,165 +31,108 @@ export const Home = () => {
     }
   };
 
-  
-  const handleSort = async(order) => {
+  const handleSort = async (order) => {
     // console.log(1)
     try {
-      setLoading(true)
+      setLoading(true);
       let result = await fetch(
         `http://localhost:8000/products?_sort=price&_order=${order}`
       );
-      
+
       let data = await result.json();
       // console.log(data)
-      setProducts(data)
-      // setSort(data);
-      // fetchData()
+      setProducts(data);
 
-      setLoading(false)
-      // console.log(result)
-      // console.log(data);
+      setLoading(false);
     } catch (error) {
-      
-      setError(true)
+      setError(true);
       console.log(error);
-      
     }
-
-   
   };
 
-  const handleFilter = async(key) => {
+  const handleFilter = async (key) => {
     // console.log(1)
     try {
-      setLoading(true)
+      setLoading(true);
       let result = await fetch(
         `http://localhost:8000/products?rating=${key}&rating=${key}`
       );
-      
+
       let data = await result.json();
-      console.log(data)
-      setProducts(data)
-      // setSort(data);
-      // fetchData()
+      console.log(data);
+      setProducts(data);
 
-      setLoading(false)
-      // console.log(result)
-      // console.log(data);
+      setLoading(false);
     } catch (error) {
-      
-      setError(true)
+      setError(true);
       console.log(error);
-      
     }
-
-   
   };
 
-
-
-
   React.useEffect(() => {
-    fetchData()
-  }, [page,sort]);
+    fetchData();
+  }, [page, sort]);
 
   return loading ? (
-    <h2>...loading</h2>
+<h2 style={{textAlign:"center"}}>Loading</h2>
   ) : error ? (
     <h2>Something went wrong</h2>
-  ) : (
-    
+  ) : token ? (
     <div>
-    
       <div className="sortingDiv">
-        <Button
-          onClick={() => handleSort("asc")}
-          variant="outlined"
-        >
+        <Button onClick={() => handleSort("asc")} variant="outlined">
           Asc
         </Button>
-        <Button
-          onClick={() => handleSort("desc")}
-             variant="contained"
-        >
+        <Button onClick={() => handleSort("desc")} variant="contained">
           Desc
         </Button>
       </div>
 
       <div className="filterRatingDiv">
-        <Button
-          onClick={() =>handleFilter(4)}
-          variant="outlined"
-        >
+        <Button onClick={() => handleFilter(4)} variant="outlined">
           5 to 4
         </Button>
-        <Button
-          onClick={() =>handleFilter(3)}
-             variant="contained"
-        >
+        <Button onClick={() => handleFilter(3)} variant="contained">
           4 to 3
         </Button>
 
-        <Button
-          onClick={() =>handleFilter(2)}
-             variant="contained"
-        >
+        <Button onClick={() => handleFilter(2)} variant="contained">
           3 to 2
         </Button>
 
-        <Button
-          onClick={() =>handleFilter(1)}
-             variant="contained"
-        >
+        <Button onClick={() => handleFilter(1)} variant="contained">
           2 to 1
         </Button>
       </div>
 
-
       <div className="main">
-        {
-          
-          products?.map((el,id) => {
-           return <ShowData  title={el.title}  description={el.description}  price={el.price}  color={el.color}  imageBase={el.imageBase}  id={el.id} />
-          
-            
-            // return (
-            
-            //   <div className="cardProduct">
-            //     <img src={el.imageBase} alt="" />
-            //     <p>Title :{el.title}</p>
-            //     <p>Colour :{el.color}</p>
-            //     <p>Price :{el.price}</p>
-            //     <p>Description :{el.description}</p>
-            //     <p>Rating :{el.rating}</p>
-              
-            //     <p>hex :{el.hex}</p>
-            //     <Link to={`/product/${el.id}`}>
-            //   <Button>ITEM</Button>
-            //    </Link>
-            //   </div>
-            // );
-          })
-        }
+        {products?.map((el, id) => {
+          return (
+            <ShowData
+              title={el.title}
+              description={el.description}
+              price={el.price}
+              color={el.color}
+              imageBase={el.imageBase}
+              id={el.id}
+            />
+          );
+        })}
       </div>
-      <div  className="pagination" >
+      <div className="pagination">
         <Button
           disabled={page == 1}
           variant="contained"
           onClick={() => setPage((prev) => prev - 1)}
         >
           Previous
-  
         </Button>
 
         <Button variant="contained">{page}</Button>
         <Button variant="contained" onClick={() => setPage((prev) => prev + 1)}>
           Next
-
         </Button>
-
-       
       </div>
     </div>
-  );
+  ) : null;
 };

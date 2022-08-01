@@ -87,6 +87,17 @@ export default function Navbar() {
             </ListItemButton>
           </ListItem>
         </Link>
+
+        <Link to="/checkout">
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={"CheckOut"} />
+            </ListItemButton>
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>

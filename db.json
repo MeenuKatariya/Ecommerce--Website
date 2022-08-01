@@ -1101,44 +1101,12 @@
       "imageBase": "https://via.placeholder.com/500"
     }
   ],
-  "cartItems": [
-    {
-      "id": 2,
-      "title": "Bread - Pumpernickel",
-      "color": "Khaki",
-      "price": 2653,
-      "description": "mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis",
-      "rating": 4.8,
-      "category": "grocery",
-      "hex": "#2b1669",
-      "imageBase": "https://via.placeholder.com/500",
-      "quantity": 7
-    },
-    {
-      "id": 3,
-      "title": "Chilli Paste, Sambal Oelek",
-      "color": "Blue",
-      "price": 2133,
-      "description": "nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla",
-      "rating": 2,
-      "category": "grocery",
-      "hex": "#12b8d9",
-      "imageBase": "https://via.placeholder.com/500",
-      "quantity": 1
-    },
-    {
-      "id": 4,
-      "title": "Chilli Paste, Sambal Oelek",
-      "color": "Blue",
-      "price": 2133,
-      "description": "nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla",
-      "rating": 2,
-      "category": "grocery",
-      "hex": "#12b8d9",
-      "imageBase": "https://via.placeholder.com/500",
-      "quantity": 1
-    },
-    {
+
+  
+   
+   "cartItems":[
+   {
+    
       "id": 1,
       "title": "Flour - Teff",
       "color": "Mauv",
@@ -1151,4 +1119,6 @@
       "quantity": 2
     }
   ]
+
+  
 }

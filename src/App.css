@@ -68,8 +68,15 @@ a{
   margin-left: 20px;
 
 
+
 }
 .imgTitle{
   /* border: 1px solid purple; */
   display: flex;
+}
+.cartIndividual{
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+  /* width: 1200px; */
 }
