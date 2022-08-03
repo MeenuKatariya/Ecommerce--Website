@@ -2,10 +2,10 @@ import React from "react";
 import { Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector } from "react-redux/es/hooks/useSelector";
 export const Cart = () => {
   const [data, setData] = React.useState([]);
-  // const token = useSelector((state) => state.auth.toggle);
+  const token = useSelector((state) => state.auth.toggle);
 
   let { productId } = useParams();
   const navigate=useNavigate()
@@ -48,7 +48,7 @@ export const Cart = () => {
     fetchData();
   }, []);
 
-  return (
+  return   token?  (
     <div className="cartMain">
       {data.map((el, productId) => {
         total += el.price * el.quantity;
@@ -95,5 +95,6 @@ export const Cart = () => {
       </div> 
     
     </div>
-  );
+  )
+  :<p   style={{textAlign:"center"}}>Please Login First</p>
 };

@@ -1,9 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Button } from "@mui/material";
-
+import { useSelector } from 'react-redux/es/exports';
 export const IndividualItem = () => {
   let {productId} = useParams();
+  const token = useSelector((state) => state.auth.toggle);
   const [singleItem, setSingleItem] = React.useState();
   const [isInCart, setIsInCart] = React.useState(false);
   const [itemFromCart, setItemFromCart] = React.useState(null);
@@ -102,7 +103,8 @@ const handleINC = async() => {
     }
   },[]);
 
-  return <div className='main'>
+  return token?
+  <div className='main'>
       {
         singleItem ? <div className='cardProduct'>
           <img src={singleItem.imageBase} alt="" />
@@ -122,5 +124,5 @@ const handleINC = async() => {
         </div> : null
       }
   </div>
-
+  :<p  style={{textAlign:"center"}} >Please Login First</p>
 }
