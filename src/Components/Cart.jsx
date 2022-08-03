@@ -1,17 +1,21 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
   const [data, setData] = React.useState([]);
+  // const token = useSelector((state) => state.auth.toggle);
+
   let { productId } = useParams();
+  const navigate=useNavigate()
   let total = 0
   
   const [cartItem,setCartItem]=React.useState(false)
 
   const fetchData = async (id) => {
     try {
-      let result = await fetch(`http://localhost:8000/cartItems`);
+      let result = await fetch(`https://ecommerce-jsonserver-website.herokuapp.com/cartItems`);
       let data = await result.json();
       
       setData(data);
@@ -21,11 +25,13 @@ export const Cart = () => {
     }
   };
 
-  
+   const handleCheckOut=()=>{
+    navigate("/checkout")
+   }
 
   const deleteCartItem = async (productId) => {
     try {
-      await fetch(`http://localhost:8000/cartItems/${productId}`, {
+      await fetch(`https://ecommerce-jsonserver-website.herokuapp.com/cartItems/${productId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -83,7 +89,7 @@ export const Cart = () => {
           Total : {total}
         </Button>
 
-        <Button color="success"  variant="contained" size="small">
+        <Button color="success"   onClick={handleCheckOut}   variant="contained" size="small">
          Check Out
         </Button>
       </div> 

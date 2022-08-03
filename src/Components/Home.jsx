@@ -17,7 +17,7 @@ export const Home = () => {
     try {
       setLoading(true);
       let result = await fetch(
-        `http://localhost:8000/products?_page=${page}&_limit=6`
+        `https://ecommerce-jsonserver-website.herokuapp.com/products?_page=${page}&_limit=6`
       );
       let data = await result.json();
       setProducts(data);
@@ -36,7 +36,7 @@ export const Home = () => {
     try {
       setLoading(true);
       let result = await fetch(
-        `http://localhost:8000/products?_sort=price&_order=${order}`
+        `https://ecommerce-jsonserver-website.herokuapp.com/products?_sort=price&_order=${order}`
       );
 
       let data = await result.json();
@@ -55,7 +55,7 @@ export const Home = () => {
     try {
       setLoading(true);
       let result = await fetch(
-        `http://localhost:8000/products?rating=${key}&rating=${key}`
+        `https://ecommerce-jsonserver-website.herokuapp.com/products?rating=${key}&rating=${key}`
       );
 
       let data = await result.json();

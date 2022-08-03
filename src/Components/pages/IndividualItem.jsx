@@ -10,7 +10,7 @@ export const IndividualItem = () => {
 
   const fetchProduct = async(productId) => {
     try {
-      let res = await fetch(`http://localhost:8000/products/${productId}`);
+      let res = await fetch(`https://ecommerce-jsonserver-website.herokuapp.com/products/${productId}`);
       let item = await res.json();
       setSingleItem(item);
     } catch (error) {
@@ -20,7 +20,7 @@ export const IndividualItem = () => {
 
   const checkInCart = async (productId) => {
     try {
-      let res = await fetch(`http://localhost:8000/cartItems/${productId}`);
+      let res = await fetch(`https://ecommerce-jsonserver-website.herokuapp.com/cartItems/${productId}`);
       let item = await res.json();
       // console.log(item);
       if(item.id){
@@ -41,7 +41,7 @@ const handleAddToCart = async (item) => {
     let body = item;
     body.quantity = 1;
     // console.log(body);
-    await fetch(`http://localhost:8000/cartItems`, {
+    await fetch(`https://ecommerce-jsonserver-website.herokuapp.com/cartItems`, {
       method: 'POST',
       headers : { 'Content-Type' : 'application/json' },
       body : JSON.stringify(body)
@@ -58,7 +58,7 @@ const handleDEC = async() => {
     let item = itemFromCart;
     item.quantity = (item.quantity-1);
     if(item.quantity == 0){
-      await fetch(`http://localhost:8000/cartItems/${productId}`, {
+      await fetch(`https://ecommerce-jsonserver-website.herokuapp.com/cartItems/${productId}`, {
         method: 'DELETE',
         headers : { 'Content-Type' : 'application/json' }
       });
@@ -66,7 +66,7 @@ const handleDEC = async() => {
     }
     else{
       // setItemFromCart(item);
-      await fetch(`http://localhost:8000/cartItems/${productId}`, {
+      await fetch(`https://ecommerce-jsonserver-website.herokuapp.com/cartItems/${productId}`, {
         method: 'PUT',
         headers : { 'Content-Type' : 'application/json' },
         body: JSON.stringify(item)
@@ -83,7 +83,7 @@ const handleINC = async() => {
     let item = itemFromCart;
     item.quantity = (item.quantity+1)
     // setItemFromCart(item);
-    await fetch(`http://localhost:8000/cartItems/${productId}`, {
+    await fetch(`https://ecommerce-jsonserver-website.herokuapp.com/cartItems/${productId}`, {
         method: 'PUT',
         headers : { 'Content-Type' : 'application/json' },
         body: JSON.stringify(item)

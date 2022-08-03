@@ -75,7 +75,7 @@ a{
   display: flex;
 }
 .cartIndividual{
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   /* width: 1200px; */
